@@ -6,11 +6,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [AuthController::class, 'login']);
-Route::post('/', [AuthController::class, 'authLogin']);
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'authLogin']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 

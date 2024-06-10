@@ -18,21 +18,30 @@ class UserController extends Controller
             abort(404);
         }
     }
-    public function list()
+    public function list(Request $request)
     {
         $permissionResponse = $this->checkPermission('User');
         if ($permissionResponse) {
             return $permissionResponse;
         }
 
+        // Fetch permissions
         $data = [
             'PermissionAdd' => PermissionRole::getPermission('Add User', Auth::user()->role_id),
             'PermissionEdit' => PermissionRole::getPermission('Edit User', Auth::user()->role_id),
             'PermissionDelete' => PermissionRole::getPermission('Delete User', Auth::user()->role_id),
-            'getRecord' => User::getRecord(),
         ];
+
+        // Get search term from request
+        $search = $request->input('search');
+
+        // Fetch the filtered records
+        $data['getRecord'] = User::getRecord($search);
+
         return view('panel.user.list', $data);
     }
+
+
     public function add()
     {
         $permissionResponse = $this->checkPermission('Add User');
@@ -72,7 +81,7 @@ class UserController extends Controller
         if ($permissionResponse) {
             return $permissionResponse;
         }
-        $data['getRecord'] = Role::getRecord();
+        $data['getRecord'] = Role::getAllRoles();
         $data['getSingle'] = User::getSingle($id);
         return view('panel.user.edit', $data);
     }
@@ -85,7 +94,8 @@ class UserController extends Controller
         // Validate the request
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'role_id' => 'required|exists:roles,id', // Ensure role_id exists in the roles table
+            'role_id' => 'required|exists:roles,id',
+            'password' => 'nullable|string|min:8|confirmed',
         ]);
         $user = User::getSingle($id);
         $user->name = trim($request->name);

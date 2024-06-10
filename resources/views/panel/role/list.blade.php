@@ -1,9 +1,10 @@
 @extends('panel.layouts.app')
+@section('title', 'Role')
 @section('content')
 
-<div class="pagetitle">
+{{-- <div class="pagetitle">
     <h1>Role</h1>
-</div>
+</div> --}}
 @include('message')
 <section class="section">
     <div class="row">
@@ -13,9 +14,19 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="card-title mb-0">Role List</h5>
                         @if(!empty($PermissionAdd))
-                        <a href="{{ url('panel/role/add') }}" class="btn btn-primary">Add</a>
+                        <a href="{{ url('panel/role/add') }}" class="btn btn-primary btn-sm">Add</a>
                         @endif
                     </div>
+                    <!-- Search Form -->
+                    <form method="GET" action="{{ url('panel/role') }}" class="mb-3">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Search by name or email" value="{{ request('search') }}">
+                            <button type="submit" class="btn btn-primary btn-sm">Search</button>
+                            @if(request('search'))
+                            <a href="{{ url('panel/role') }}" class="btn btn-secondary btn-sm">Reset</a>
+                            @endif
+                        </div>
+                    </form>
                     <!-- Table with stripped rows -->
                     <table class="table table-striped">
                         <thead>

@@ -46,10 +46,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    static public function getRecord()
+    public static function getRecord($search = null)
     {
-        return self::with('role')->orderBy('id', 'DESC')->paginate(10);
+        $query = self::with('role')->orderBy('id', 'DESC');
+
+        if (!empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%')
+                    ->orWhere('email', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        return $query->paginate(10);
     }
+
     static public function getSingle($id)
     {
         return self::find($id);

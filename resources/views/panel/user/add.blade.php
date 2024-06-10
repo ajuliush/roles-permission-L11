@@ -1,9 +1,10 @@
 @extends('panel.layouts.app')
+@section('title', 'User')
 @section('content')
 
-<div class="pagetitle">
+{{-- <div class="pagetitle">
     <h1>Role</h1>
-</div>
+</div> --}}
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
@@ -87,5 +88,13 @@
     </div>
 </section>
 
+<script>
+    $(document).ready(function() {
+        $('#role_id').select2({
+            placeholder: 'Select a role'
+            , allowClear: true
+        });
+    });
 
+</script>
 @endsection

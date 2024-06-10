@@ -18,7 +18,7 @@ class RoleController extends Controller
         }
     }
 
-    public function list()
+    public function list(Request $request)
     {
         $permissionResponse = $this->checkPermission('Role');
         if ($permissionResponse) {
@@ -29,8 +29,12 @@ class RoleController extends Controller
             'PermissionAdd' => PermissionRole::getPermission('Add Role', Auth::user()->role_id),
             'PermissionEdit' => PermissionRole::getPermission('Edit Role', Auth::user()->role_id),
             'PermissionDelete' => PermissionRole::getPermission('Delete Role', Auth::user()->role_id),
-            'getRecord' => Role::getRecord(),
         ];
+        // Get search term from request
+        $search = $request->input('search');
+
+        // Fetch the filtered records
+        $data['getRecord'] = Role::getRecord($search);
 
         return view('panel.role.list', $data);
     }

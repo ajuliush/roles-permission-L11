@@ -1,9 +1,10 @@
 @extends('panel.layouts.app')
+@section('title', 'Role')
 @section('content')
 
-<div class="pagetitle">
+{{-- <div class="pagetitle">
     <h1>Role</h1>
-</div>
+</div> --}}
 <section class="section">
     <div class="row">
         <div class="col-lg-12">
