@@ -12,6 +12,9 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'authLogin']);
 
+Route::get('/registration', [AuthController::class, 'registration']);
+Route::post('/registration', [AuthController::class, 'UserRegistration']);
+
 Route::get('logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware' => 'userAdmin'], function () {
