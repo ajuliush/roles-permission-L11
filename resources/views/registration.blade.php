@@ -10,7 +10,7 @@
     <main class="h-screen w-screen flex items-center justify-center mt-0" role="main">
         <div class="h-full w-full flex items-center justify-center">
             <span class="h-auto w-full max-w-md flex flex-col items-center justify-center gap-6 overflow-hidden rounded-lg bg-gray-800 p-6 shadow-[0px_14px_34px_0px_rgba(0,0,0,0.08)] ring-1 ring-white/[0.05] transition duration-300 hover:text-white/70 hover:ring-white/20 focus:outline-none focus-visible:ring-[#FF2D20] lg:p-10 lg:pb-10 dark:bg-gray-800 dark:ring-gray-700 dark:hover:text-white/70 dark:hover:ring-gray-600 dark:focus-visible:ring-[#FF2D20]" tabindex="0" aria-label="Interactive content" role="region">
-                <form class="w-full max-w-md" action="{{ url('registration') }}" enctype="multipart/form-data" method="POST">
+                <form class="w-full max-w-md" action="{{ url('user-registration') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     <h2 class="text-2xl font-bold mb-6 text-center text-white">Register</h2>
                     <div class="mb-4">

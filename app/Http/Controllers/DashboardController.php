@@ -10,4 +10,9 @@ class DashboardController extends Controller
     {
         return view('panel.dashboard');
     }
+    // If need separate dashboard for admin, user and others 
+    // public function userDashboard()
+    // {
+    //     return view('panel.user');
+    // }
 }

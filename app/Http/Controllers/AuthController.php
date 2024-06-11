@@ -47,8 +47,15 @@ class AuthController extends Controller
     {
         $remember = !empty($request->remember) ? true : false;
         if (Auth::Attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
-            // return redirect('panel/dashboard');
+
             return redirect(url('panel/dashboard'))->with('success', 'Login successfully.');
+
+            // If need separate dashboard for admin, user and others 
+            // if (Auth::user()->role->name == 'Admin') {
+            //     return redirect(url('panel/dashboard'))->with('success', 'Login successfully as Admin.');
+            // } elseif (Auth::user()->role->name == 'User') {
+            //     return redirect(url('panel/user-dashboard'))->with('success', 'Login successfully as User.');
+            // }
         } else {
             return redirect()->back()->with('error', 'Please enter correct password email address and password.');
         }

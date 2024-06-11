@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1 style="color: red">Dashboard</h1>
 </div>
 @include('message')
 

@@ -12,13 +12,16 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login']);
 Route::post('/login', [AuthController::class, 'authLogin']);
 
-Route::get('/registration', [AuthController::class, 'registration']);
-Route::post('/registration', [AuthController::class, 'UserRegistration']);
+Route::get('/user-registration', [AuthController::class, 'registration']);
+Route::post('/user-registration', [AuthController::class, 'UserRegistration']);
 
 Route::get('logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware' => 'userAdmin'], function () {
     Route::get('panel/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // If need separate dashboard for admin, user and others 
+    // Route::get('panel/user-dashboard', [DashboardController::class, 'userDashboard'])->name('panel/user-dashboard');
 
     Route::prefix('panel/role')->group(function () {
         Route::get('/', [RoleController::class, 'list'])->name('role.index');
