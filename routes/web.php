@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -38,5 +39,13 @@ Route::group(['middleware' => 'userAdmin'], function () {
         Route::post('store', [UserController::class, 'store'])->name('user.store');
         Route::post('update/{id}', [UserController::class, 'update'])->name('user.update');
         Route::delete('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    });
+    Route::prefix('panel/category')->group(function () {
+        Route::get('/', [CategoryController::class, 'list'])->name('category.index');
+        Route::get('add', [CategoryController::class, 'add'])->name('category.add');
+        // Route::get('edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+        Route::post('store', [CategoryController::class, 'store'])->name('category.store');
+        // Route::post('update/{id}', [UserController::class, 'update'])->name('user.update');
+        // Route::delete('delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     });
 });

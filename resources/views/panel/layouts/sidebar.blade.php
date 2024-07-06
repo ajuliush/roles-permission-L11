@@ -4,13 +4,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
         @php
         $permissions = [
-        'User' => App\Models\PermissionRole::getPermission('User', Auth::user()->role_id),
-        'Role' => App\Models\PermissionRole::getPermission('Role', Auth::user()->role_id),
-        'Category' => App\Models\PermissionRole::getPermission('Category', Auth::user()->role_id),
-        'SubCategory' => App\Models\PermissionRole::getPermission('Sub-category', Auth::user()->role_id),
-        'Setting' => App\Models\PermissionRole::getPermission('Setting', Auth::user()->role_id),
-        'Slider' => App\Models\PermissionRole::getPermission('Slider', Auth::user()->role_id),
+        'User' => App\Models\PermissionRole::getPermission('User', Auth::user()?->role_id),
+        'Role' => App\Models\PermissionRole::getPermission('Role', Auth::user()?->role_id),
+        'Category' => App\Models\PermissionRole::getPermission('Category', Auth::user()?->role_id),
+        'SubCategory' => App\Models\PermissionRole::getPermission('Sub-category', Auth::user()?->role_id),
+        'Setting' => App\Models\PermissionRole::getPermission('Setting', Auth::user()?->role_id),
+        'Slider' => App\Models\PermissionRole::getPermission('Slider', Auth::user()?->role_id),
         ];
+
         @endphp
 
         <li class="nav-item">

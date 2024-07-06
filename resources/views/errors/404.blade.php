@@ -6,9 +6,9 @@
         <h2>The page you are looking for doesn't exist.</h2>
         <a class="btn" href="{{ url('/') }}">Back to home</a>
         <img src="{{ asset('backend') }}/img/not-found.svg" class="img-fluid py-5" alt="Page Not Found">
-        <div class="credits">
+        {{-- <div class="credits">
             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
+        </div> --}}
     </section>
 
 </div>
